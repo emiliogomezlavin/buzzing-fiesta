@@ -1,0 +1,45 @@
+.container-fluid {
+	background-color: black;
+	height: 650px;
+	margin: 20px;
+}
+#row1 {
+	height: 100px;
+}
+#row2{
+	height: 380px;
+}
+#row3 {
+	height: 60px;
+}
+.col-md-3 {
+	background-color: red;
+	text-align: center;
+}
+.col-md-1 {
+	background-color: green;
+}
+.col-md-6 {
+	background-color: gray;
+}
+#board {
+	height: 340px;
+	background-color: white;
+}
+.col-md-4 {
+	background-color: yellow;
+}
+.col-md-8 {
+	background-color: orange;
+}
+.buzz {
+	margin-top: 10px;
+	text-align: center;
+	height: 60px;
+	width: 60px;
+	background-color: blue;
+}
+.btn {
+	width: 200px;
+	position: center;
+}
