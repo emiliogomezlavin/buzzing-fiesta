@@ -43,3 +43,6 @@
 	width: 200px;
 	position: center;
 }
+form {
+	display: block;
+}

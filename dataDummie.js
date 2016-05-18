@@ -1,6 +1,7 @@
-var dataDummy = [{
+var dataDummie = [{
 		bandName : "Queen",
-		songName : "Bohemian Raphsody"
+		songName : "Bohemian Raphsody",
+		sample : new Audio("songs/bohemian-raphsody.mp3")
 	}, {
 		bandName : "AC/DC",
 		songName : "Shook Me All Night Long"	
