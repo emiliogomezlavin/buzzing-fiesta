@@ -1,33 +1,56 @@
 
+var itunesData = "https://itunes.apple.com/search?term=jack+johnson&country=US";
+var data = [];
+
 window.onload = function () {
-	test();
+	initialize();
 };
 
-function test (){
+function fetchData() {
+  $.ajax({
+    url: itunesData,
+    jsonp : "callback",
+    dataType : "jsonp",
+    success : onSuccess
+  });
+}
+
+function onSuccess(json) {
+  data = json.results;
+}
+
+function initialize (){
+	fetchData();
+
 	document.getElementById("btn").addEventListener("click", createQuestion);
-	document.addEventListener("keydown", checkWinner);
+	document.addEventListener("keypress", checkWinner);
 }
 
 
-function checkWinner () {
-	var winner = checkKeyPressed(event);
-	console.log(winner);
-	if (winner === "X") {
+function checkWinner (event) {
+	
+	if (event.keyCode == "115") {
 		document.getElementById("buzzerX").setAttribute("style", "background-color: white");
-		document.removeEventListener("keydown", checkWinner);
+		alert("Player 1");
+		document.removeEventListener("keypress", checkWinner);
+	}
+	else if (event.keyCode == "108") {
+		document.getElementById("buzzerO").setAttribute("style", "background-color: white");
+		alert("Player 2");
+		document.removeEventListener("keypress", checkWinner);
 	}
 	else {
-		document.getElementById("buzzerO").setAttribute("style", "background-color: white");
-		document.removeEventListener("keydown", checkWinner);
+		document.removeEventListener("keypress", checkWinner);	
+		document.addEventListener("keypress", checkWinner);
 	}
 }
 
-function createRandoms () {
+function createRandoms (dataArray) {
 	var arr = [];
 	while(arr.length < 4){
-	  var random = Math.ceil(Math.random()*dataDummie.length);
+	  var random = Math.ceil(Math.random()*dataArray.length);
 	  var found = false;
-	  for(var i=0; i < arr.length; i++){
+	  for(var i=0; i < arr.length; i++){	
 		if(arr[i] == random){
 			found = true;
 			break;
@@ -37,63 +60,31 @@ function createRandoms () {
 	  	arr[arr.length] = random;
 	  }
 	}
-	return arr;	
+	arr.sort(function (a, b) {
+		return a - b;
+	});
+	return arr;
 }
 
+var randoms;
+var randomInd;
 
 function createQuestion (event) {
 
-	dataDummie[0].sample.play();
-	var randoms = createRandoms();
-	// var opt1 = ;
-	// var opt2 = dataDummie[randoms[1]].bandName;
-	// var opt3 = dataDummie[randoms[2]].bandName;
-	// var opt4 = dataDummie[randoms[3]].bandName;
+	var randomInd = Math.floor(Math.random()*4);
+	randoms = [];
+	randoms = createRandoms(dataDummie);
+	console.log(randoms);	
+	dataDummie[randoms[randomInd]].sample.play();
 
 	for(var i=0; i<randoms.length; i++) {
-		var prueba = addRadioButton("radio", "question", dataDummie[randoms[i]].bandName, "opt"+(i+1));
-		console.log(prueba);
+		addRadioButton("radio", "question", dataDummie[randoms[i]].bandName, "opt"+(i+1));
+		console.log(dataDummie[randoms[i]].bandName);
 	}
-
-
-	// addRadioButton("radio", "question", opt2, "opt2");
-	// addRadioButton("radio", "question", opt3, "opt3");
-	// addRadioButton("radio", "question", opt4, "opt4");
 	addRadioButton("submit", "submit", "", "submitButton");
-
+ 
 	document.getElementById("btn").removeEventListener("click", createQuestion);	
 	document.getElementById("submitButton").addEventListener("click", verifyAnswer);
-}
-
-
-var answer;
-
-function verifyAnswer (event) {
-	event.preventDefault();
-	var currentQuestion = dataDummie[1].bandName;
-	var val = checkRadioButtons();
-
-	if (val === currentQuestion) {
-		alert("right answer");
-		console.log(answer);
-	}
-	else {
-		answer = false;
-		alert("incorrect answer");
-		console.log(answer);
-	}
-}
-
-function checkRadioButtons () {
-	var radios = document.getElementsByName("question");
-	var val;
-	for(var i = 0; i < radios.length; i++){
-	    if(radios[i].checked){
-	    val = radios[i].value;
-	    console.log(val);
-		}
-	}
-	return val;
 }
 
 function addRadioButton(type, name, text, id) {
@@ -112,24 +103,38 @@ function addRadioButton(type, name, text, id) {
     console.log(prueba);
 }
 
+var answer;
+
+function checkRadioButtons () {
+	var radios = document.getElementsByName("question");
+	console.log(radios);
+	var val;
+	for(var i = 0; i < radios.length; i++){
+	    if(radios[i].checked){
+	    val = radios[i].value;
+	    console.log(val);
+		}
+	}
+	return val;
+}
+
+function verifyAnswer (event) {
+	event.preventDefault();
+	var currentQuestion = dataDummie[randoms[randomInd]].bandName;
+	var val = checkRadioButtons();
+
+	if (val === currentQuestion) {
+		alert("right answer");
+	}
+	else {
+		alert("incorrect answer");
+	}
+}
+
+function nextQuestion () {
+
+}
 
 
  
-function checkKeyPressed(e) {
-    // if (e.keyCode != "83" && e.keyCode != "76") {
-    // 	document.removeEventListener("keydown", checkWinner);
-    // 	document.addEventListener("keydown", checkWinner);
-    // 	Define how to remove the eventListener from all the other letters
-    // }
-    if (e.keyCode == "83") {
-        alert("Player 1");
-        // e.preventDefault();
-        return "X";
-    }
-    else if(e.keyCode == "76") {
-    	alert("Player 2");
-    	// e.preventDefault();
-    	return "O";
-    }
-}
 
