@@ -1,8 +1,7 @@
 var dataDummie = [{
 		bandName : "Queen",
 		songName : "Bohemian Raphsody",
-		// sample : new Audio("songs/bohemian-raphsody.mp3")
-		sample : new Audio ("http://a898.phobos.apple.com/us/r1000/039/Music6/v4/13/22/67/1322678b-e40d-fb4d-8d9b-3268fe03b000/mzaf_8818596367816221008.plus.aac.p.m4a")
+		sample : new Audio("songs/bohemian-raphsody.mp3")
 	}, {
 		bandName : "AC/DC",
 		songName : "Shook Me All Night Long",

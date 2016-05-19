@@ -46,3 +46,8 @@
 form {
 	display: block;
 }
+#scores {
+	background-color: white;
+	text-align: center;
+	font-size: 40px;
+}

@@ -1,0 +1,47 @@
+body {
+	background-color: black;
+}
+
+.container {
+	margin: 40px;
+	position: relative;
+	/*width: 630px;
+	height: 412px;
+	background-image: url("images/drum-kit.jpg");*/
+}
+.drum {
+	background-color: white;
+	position: absolute;
+}
+#pos1 {
+	top: 20px;
+	left: 20px;
+}
+#pos2 {
+	top: 60px;
+	left: 20px;
+}
+#pos3 {
+	top: 130px;
+	left: 20px;
+}
+#pos4 {
+	top: 230px;
+	left: 20px;
+}
+#pos5 {
+	top: 20px;
+	right: 20px;
+}
+#pos6 {
+	top: 60px;
+	right: 20px;
+}
+#pos7 {
+	top: 130px;
+	right: 20px;
+}
+#pos8 {
+	top: 230px;
+	right: 20px;
+}

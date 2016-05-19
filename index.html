@@ -23,14 +23,14 @@
       <div>Header</div>
     </header>
     <div class="row" id="row1">
-      <div class="col-md-3"></div>
-      <div class="col-md-1">Space</div>
+      <div class="col-md-3"><div id="scoresX">Scores</div></div>
+      <div class="col-md-1"></div>
       <div class="col-md-1">Category 1</div>
       <div class="col-md-1">Category 2</div>
       <div class="col-md-1">Category 3</div>
       <div class="col-md-1">Category 4</div>
-      <div class="col-md-1">Space</div>
-      <div class="col-md-3"></div>
+      <div class="col-md-1"></div>
+      <div class="col-md-3"><div id="scoresY">Scores</div></div>
     </div>
     <div class ="row" id="row2">
       <div class="col-md-3">
@@ -41,9 +41,9 @@
       <div class="col-md-6">
         <div id="board">
           <p>Name of the band</p>
-          <div id="form"></div>
-          <!-- <audio src="" > 
-          Usar handlebars para que pase el audio del file de script a mi tag de audio-->
+          <div id="form">
+            <audio id="song" autoplay></audio>
+          </div>
         </div>
         <button id="btn">START</button>
       </div>
