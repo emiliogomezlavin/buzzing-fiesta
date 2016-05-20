@@ -1,8 +1,10 @@
 
 // var itunesData = "https://itunes.apple.com/search?term=jack+johnson&country=US";
 var data = [];
+var alerts;
 
 window.onload = function () {
+	alerts = document.getElementById("alerts");
 	getPlayersDetails();
 };
 	
@@ -58,7 +60,7 @@ function initialize (){
 function checkWinner (event) {
 		// console.log(document.getElementById("buzzerX"));
 	if (event.keyCode == "115") {
-		document.getElementById("buzzerX").setAttribute("style", "background-color: yellow");
+		document.getElementById("buzzerX").setAttribute("style", "background-color: #f1c40f");
 		document.getElementById("buzzerX").innerHTML = "WINNER!!";
 		// for(i=0; i<6; i++) {
 		// 	fadeInfadeOut("X");
@@ -67,16 +69,18 @@ function checkWinner (event) {
 		// document.getElementById("flashX").setAttribute("class", "animated flash"); 
 		// document.getElementById("flashX").setAttribute("style", "background-color: rgba(0,0,0,0.6)");
 		// alert("Player 1");
+		alerts.innerHTML = player1 + " buzzed first!";
 		document.removeEventListener("keypress", checkWinner);
 		currentPlayer = "X";
 	}
 	else if (event.keyCode == "108") {
-		document.getElementById("buzzerY").setAttribute("style", "background-color: yellow");
+		document.getElementById("buzzerY").setAttribute("style", "background-color: #f1c40f");
 		document.getElementById("buzzerY").innerHTML = "WINNER!!";
 		// for(i=0; i<6; i++) {
 		// 	fadeInfadeOut("Y");
 		// }
 		// alert("Player 2");
+		alerts.innerHTML = player2 + " buzzed first!";
 		document.removeEventListener("keypress", checkWinner);
 		currentPlayer = "Y";
 	}
@@ -109,6 +113,7 @@ var firstTime = true;
 
 function createQuestion (event) {
 	// $("#buzzerX").keypress(checkWinner(event));
+	alerts.innerHTML = "Select an option and submit";
 	if (firstTime) {
 		var startButton = document.getElementById("btn");
 		startButton.parentNode.removeChild(startButton);
@@ -183,6 +188,7 @@ function verifyAnswer (event) {
 
 	if (checkAnswer()) {
 		asignWinner();
+		alerts.innerHTML = "Well done! That was the correct answer!";
 		nextQuestion();
 	}
 	else if (count === 0) {
@@ -190,20 +196,20 @@ function verifyAnswer (event) {
 		count ++;
 	}
 	else {
-		alert("Both players were wrong! The right answer was " + data[randoms[randomInd]].trackName);
+		alerts.innerHTML = "Both players were wrong! The right answer was " + data[randoms[randomInd]].trackName;
 		nextQuestion();
 	}
 }
 
 function switchPlayer () {
 	if (currentPlayer === "X") {
-		alert("Wrong answer. Player 2 gets a chance to answer");
+		alerts.innerHTML = "Wrong answer. " +player2 +" gets a chance to answer";
 		currentPlayer = "Y";
 		document.getElementById("submitButton").removeEventListener("click", verifyAnswer);
 		document.getElementById("submitButton").addEventListener("click", verifyAnswer);			
 	}
 	else {
-		alert("Wrong answer. Player 1 gets a chance to answer");
+		alerts.innerHTML = "Wrong answer. " +player1 +" gets a chance to answer";
 		currentPlayer = "X";
 		document.getElementById("submitButton").removeEventListener("click", verifyAnswer);
 		document.getElementById("submitButton").addEventListener("click", verifyAnswer);
@@ -211,8 +217,6 @@ function switchPlayer () {
 }
 
 function asignWinner () {
-
-	alert("right answer");
 	var scoresX = document.getElementById("scoresX");
 	var scoresY = document.getElementById("scoresY");
 
@@ -254,7 +258,7 @@ function nextQuestion () {
 	document.getElementById("submitButton").removeEventListener("click", verifyAnswer);
 	// var removeSubmit = document.getElementById("submitButton");
 	// removeSubmit.parentNode.removeChild(removeSubmit);
-
+	alerts.innerHTML = "Try a new song!";
 	addRadioButton("submit", "submit", "", "next");
 	document.getElementById("next").addEventListener("click", clearBoard);
 }

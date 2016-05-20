@@ -28,14 +28,15 @@
   </header>
   <div class="container-fluid">
     <div class="row" id="row1">
-      <div class="col-md-3"><div id="scoresX">0</div></div>
-      <div class="col-md-1"></div>
+      <div class="col-md-3"><div id="scoresX" class="buzzer">0</div></div>
+      <div class="col-md-6 alerts" id="alerts">Welcome! Please input your details!</div>
+     <!--  <div class="col-md-1"></div>
       <div class="col-md-1">Category 1</div>
       <div class="col-md-1">Category 2</div>
       <div class="col-md-1">Category 3</div>
       <div class="col-md-1">Category 4</div>
-      <div class="col-md-1"></div>
-      <div class="col-md-3"><div id="scoresY">0</div></div>
+      <div class="col-md-1"></div> -->
+      <div class="col-md-3"><div id="scoresY" class="buzzer">0</div></div>
     </div>
     <div class ="row" id="row2">
       <div class="col-md-3" id="flashX">
@@ -45,7 +46,6 @@
       </div>  
       <div class="col-md-6">
         <div id="board">
-          <p>Name of the band</p>
           <form class=".col-md-6" id="startForm">
             <label class ="formLabel" for="player1Input">Player 1</label>
             <input class="formInput" type="text" id="player1Input" placeholder="First name" required>
