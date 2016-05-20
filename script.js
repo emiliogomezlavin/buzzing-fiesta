@@ -1,15 +1,20 @@
 
-var itunesData = "https://itunes.apple.com/search?term=jack+johnson&country=US";
+// var itunesData = "https://itunes.apple.com/search?term=jack+johnson&country=US";
 var data = [];
 
 window.onload = function () {
-	initialize();
-	fetchData();
+	getPlayersDetails();
 };
+	
+function getTermData (answer) {
+	// var answer = "jack+johnson";
+	fetchData(answer);
+}
 
-function fetchData() {
+function fetchData(searchTerm) {
+  var query = typeof searchTerm === "undefined" ? "jack+johnson" : searchTerm;
   $.ajax({
-    url: itunesData,
+    url: "https://itunes.apple.com/search?term=" + query + "&country=US",
     jsonp : "callback",
     dataType : "jsonp",
     success : onSuccess
@@ -20,6 +25,30 @@ function onSuccess(json) {
   data = json.results;
 }
 
+var player1;
+var player2;
+var artistName;
+
+function getPlayersDetails () {
+	$("#startForm").on("submit", function(event){
+    event.preventDefault(); 
+    player1 = $("input#player1Input").val();
+    player2 = $("input#player2Input").val();
+    artistName = $("input#artistInput").val();
+    
+    document.getElementById("player1").innerHTML = player1;
+    document.getElementById("player2").innerHTML = player2;
+
+    getTermData(artistName);
+
+    var startForm = document.getElementById("startForm");
+	startForm.parentNode.removeChild(startForm);
+	initialize();
+	});
+}
+
+
+
 function initialize (){
 	document.getElementById("btn").addEventListener("click", createQuestion);
 	document.addEventListener("keypress", checkWinner);
@@ -27,16 +56,27 @@ function initialize (){
 
 
 function checkWinner (event) {
-	
+		// console.log(document.getElementById("buzzerX"));
 	if (event.keyCode == "115") {
-		document.getElementById("buzzerX").setAttribute("style", "background-color: white");
-		alert("Player 1");
+		document.getElementById("buzzerX").setAttribute("style", "background-color: yellow");
+		document.getElementById("buzzerX").innerHTML = "WINNER!!";
+		// for(i=0; i<6; i++) {
+		// 	fadeInfadeOut("X");
+		// }
+		// animateBuzzer(document.getElementById("buzzerX"));
+		// document.getElementById("flashX").setAttribute("class", "animated flash"); 
+		// document.getElementById("flashX").setAttribute("style", "background-color: rgba(0,0,0,0.6)");
+		// alert("Player 1");
 		document.removeEventListener("keypress", checkWinner);
 		currentPlayer = "X";
 	}
 	else if (event.keyCode == "108") {
-		document.getElementById("buzzerO").setAttribute("style", "background-color: white");
-		alert("Player 2");
+		document.getElementById("buzzerY").setAttribute("style", "background-color: yellow");
+		document.getElementById("buzzerY").innerHTML = "WINNER!!";
+		// for(i=0; i<6; i++) {
+		// 	fadeInfadeOut("Y");
+		// }
+		// alert("Player 2");
 		document.removeEventListener("keypress", checkWinner);
 		currentPlayer = "Y";
 	}
@@ -46,11 +86,33 @@ function checkWinner (event) {
 	}
 }
 
+// function fadeInfadeOut (win) {
+// 	$("#buzzer" +win).fadeOut(100);
+// 	$("#buzzer" +win).fadeIn(100);
+// }
+
+// function animateBuzzer (buzzer) {
+// 	console.log(buzzer);
+//     buzzer.setAttribute("class", "animated flash");  
+//     console.log(buzzer);
+//     buzzer.removeAttribute("class", "animated flash");  
+//     console.log(buzzer);
+// 	window.setTimeout( function(){
+// 	    buzzer.removeClass("animated flash");
+// 	}, 200);         
+// }
+
+
 var randoms = [];
 var randomInd;
+var firstTime = true;
 
 function createQuestion (event) {
-
+	// $("#buzzerX").keypress(checkWinner(event));
+	if (firstTime) {
+		var startButton = document.getElementById("btn");
+		startButton.parentNode.removeChild(startButton);
+	}
 	randomInd = Math.floor(Math.random()*4);
 	randoms = createRandoms(data);
 	
@@ -58,11 +120,10 @@ function createQuestion (event) {
 	song.setAttribute("src", data[randoms[randomInd]].previewUrl);
 
 	for(var i=0; i<randoms.length; i++) {
-		addButton("radio", "question", data[randoms[i]].trackName, "opt"+(i+1));
+		addRadioButton("radio", "question", data[randoms[i]].trackName, "opt"+(i+1));
 	}
-	addButton("submit", "submit", "", "submitButton"); 
- 
-	document.getElementById("btn").removeEventListener("click", createQuestion);	
+	
+	addRadioButton("submit", "submit", "", "submitButton");
 	document.getElementById("submitButton").addEventListener("click", verifyAnswer);
 }
 
@@ -87,18 +148,27 @@ function createRandoms (data) {
 	return arr;
 }
 
+// addSubmitButton("submit", "submit", "Submit Answer", "submitButton");
+// addSubmitButton("submit", "submit", "Next Song", "next");
+// function addSubmitButton(type, name, text, id) {
+//     var board = document.getElementById("board");
+//     var element = document.createElement("input");
+//     element.setAttribute("type", type);
+//     element.setAttribute("name", name);
+//     element.setAttribute("id", id);
+//     board.appendChild(element);
+//     board.innerHTML += text;
+// }
 
-function addButton(type, name, text, id) {
+function addRadioButton(type, name, text, id) {
     var label = document.createElement("label");
     var element = document.createElement("input");
     element.setAttribute("type", type);
     element.setAttribute("value", text);
     element.setAttribute("name", name);
     element.setAttribute("id", id);
-
     label.appendChild(element);
-    label.innerHTML += text;
-
+    label.innerHTML += ("        " +text);
     var radio1 = document.getElementById("form");
     radio1.appendChild(label);
 }
@@ -144,7 +214,6 @@ function asignWinner () {
 
 	alert("right answer");
 	var scoresX = document.getElementById("scoresX");
-
 	var scoresY = document.getElementById("scoresY");
 
 
@@ -183,21 +252,26 @@ function checkRadioButtons () {
 
 function nextQuestion () {
 	document.getElementById("submitButton").removeEventListener("click", verifyAnswer);
-	addButton("submit", "submit", "", "next");
+	// var removeSubmit = document.getElementById("submitButton");
+	// removeSubmit.parentNode.removeChild(removeSubmit);
+
+	addRadioButton("submit", "submit", "", "next");
 	document.getElementById("next").addEventListener("click", clearBoard);
 }
+
+// Falta incluir como regresa el buzzer al principio y como va a hacer animacion cuando cambia de jugador
 
 function clearBoard () {
 	var form = document.getElementById("form");
 	form.innerHTML = "<audio autoplay></audio>";
 	document.querySelector("audio").setAttribute("id", "song");
-	console.log(document.getElementById("form"));
 	currentPlayer = "";
 	count = 0;
 	randoms = [];
 	randomInd = 0;
-	createQuestion();
+	firstTime = false;
 	document.addEventListener("keypress", checkWinner);
+	createQuestion();
 }
  
 
