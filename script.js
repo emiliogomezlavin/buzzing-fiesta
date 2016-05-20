@@ -39,12 +39,24 @@ function getPlayersDetails () {
     artistName = $("input#artistInput").val();
     
     document.getElementById("player1").innerHTML = player1;
+    var element = document.createElement("p");
+    element.innerHTML = "Use the letter S";
+    document.getElementById("player1").appendChild(element);
     document.getElementById("player2").innerHTML = player2;
+    var element2 = document.createElement("p");
+    element2.innerHTML = "Use the letter L";
+    document.getElementById("player2").appendChild(element2);
 
     getTermData(artistName);
 
     var startForm = document.getElementById("startForm");
 	startForm.parentNode.removeChild(startForm);
+
+	var ready = document.createElement("h2");
+	ready.innerHTML = "GET READY!!! </br> </br>CLICK ON THE START BUTTON!!";
+	ready.setAttribute("id", "ready");
+	document.getElementById("board").appendChild(ready);
+
 	initialize();
 	});
 }
@@ -58,28 +70,30 @@ function initialize (){
 
 
 function checkWinner (event) {
-		// console.log(document.getElementById("buzzerX"));
+		
 	if (event.keyCode == "115") {
-		document.getElementById("buzzerX").setAttribute("style", "background-color: #f1c40f");
-		document.getElementById("buzzerX").innerHTML = "WINNER!!";
+		document.getElementById("buzzerX").setAttribute("style", "background-color: #f39c12");
+		// document.getElementById("buzzerX").setAttribute("style", "border: 3px solid #ecf0f1");
+		// document.getElementById("buzzerX").innerHTML = "WINNER!!";
 		// for(i=0; i<6; i++) {
 		// 	fadeInfadeOut("X");
 		// }
 		// animateBuzzer(document.getElementById("buzzerX"));
 		// document.getElementById("flashX").setAttribute("class", "animated flash"); 
 		// document.getElementById("flashX").setAttribute("style", "background-color: rgba(0,0,0,0.6)");
-		// alert("Player 1");
+		
 		alerts.innerHTML = player1 + " buzzed first!";
 		document.removeEventListener("keypress", checkWinner);
 		currentPlayer = "X";
 	}
 	else if (event.keyCode == "108") {
-		document.getElementById("buzzerY").setAttribute("style", "background-color: #f1c40f");
-		document.getElementById("buzzerY").innerHTML = "WINNER!!";
+		document.getElementById("buzzerY").setAttribute("style", "background-color: #f39c12");
+		// document.getElementById("buzzerY").setAttribute("style", "border: 3px solid #ecf0f1");
+		// document.getElementById("buzzerY").innerHTML = "WINNER!!";
 		// for(i=0; i<6; i++) {
 		// 	fadeInfadeOut("Y");
 		// }
-		// alert("Player 2");
+		
 		alerts.innerHTML = player2 + " buzzed first!";
 		document.removeEventListener("keypress", checkWinner);
 		currentPlayer = "Y";
@@ -117,6 +131,8 @@ function createQuestion (event) {
 	if (firstTime) {
 		var startButton = document.getElementById("btn");
 		startButton.parentNode.removeChild(startButton);
+		var ready = document.getElementById("ready");
+		ready.parentNode.removeChild(ready);
 	}
 	randomInd = Math.floor(Math.random()*4);
 	randoms = createRandoms(data);
@@ -129,6 +145,9 @@ function createQuestion (event) {
 	}
 	
 	addRadioButton("submit", "submit", "", "submitButton");
+	document.getElementById("submitButton").setAttribute("value", "SUBMIT");
+	document.getElementById("submitButton").setAttribute("style", "bottom: 60px");
+	document.getElementById("submitButton").setAttribute("class", "gameButton");
 	document.getElementById("submitButton").addEventListener("click", verifyAnswer);
 }
 
@@ -204,12 +223,16 @@ function verifyAnswer (event) {
 function switchPlayer () {
 	if (currentPlayer === "X") {
 		alerts.innerHTML = "Wrong answer. " +player2 +" gets a chance to answer";
+		document.getElementById("buzzerX").setAttribute("style", "background-color: black");
+		document.getElementById("buzzerY").setAttribute("style", "background-color: #f39c12");
 		currentPlayer = "Y";
 		document.getElementById("submitButton").removeEventListener("click", verifyAnswer);
 		document.getElementById("submitButton").addEventListener("click", verifyAnswer);			
 	}
 	else {
 		alerts.innerHTML = "Wrong answer. " +player1 +" gets a chance to answer";
+		document.getElementById("buzzerY").setAttribute("style", "background-color: black");
+		document.getElementById("buzzerX").setAttribute("style", "background-color: #f39c12");
 		currentPlayer = "X";
 		document.getElementById("submitButton").removeEventListener("click", verifyAnswer);
 		document.getElementById("submitButton").addEventListener("click", verifyAnswer);
@@ -260,6 +283,8 @@ function nextQuestion () {
 	// removeSubmit.parentNode.removeChild(removeSubmit);
 	alerts.innerHTML = "Try a new song!";
 	addRadioButton("submit", "submit", "", "next");
+	document.getElementById("next").setAttribute("value", "NEXT SONG");
+	document.getElementById("submitButton").setAttribute("class", "gameButton");
 	document.getElementById("next").addEventListener("click", clearBoard);
 }
 
@@ -274,6 +299,10 @@ function clearBoard () {
 	randoms = [];
 	randomInd = 0;
 	firstTime = false;
+	document.getElementById("buzzerX").removeAttribute("style", "background-color: #f39c12");
+	document.getElementById("buzzerX").removeAttribute("style", "background-color: #f39c12");
+	document.getElementById("buzzerX").removeAttribute("style", "border: 3px solid #ecf0f1");
+	document.getElementById("buzzerY").removeAttribute("style", "border: 3px solid #ecf0f1");
 	document.addEventListener("keypress", checkWinner);
 	createQuestion();
 }
