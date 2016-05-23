@@ -77,27 +77,27 @@ function playKey (event) {
 
 
 keys = {
-	114: new Audio("drumkit/sounds/ridecrash-1.wav"),
-	116: new Audio("drumkit/sounds/hitom-left-2.wav"),
-	121: new Audio("drumkit/sounds/hitom-right-3.wav"),
-	117: new Audio("drumkit/sounds/ride-4.wav"),
-	106: new Audio("drumkit/sounds/hihat-5.wav"),
-	102: new Audio("drumkit/sounds/snare-6.wav"),
-	32: new Audio("drumkit/sounds/bass-kick-7.wav"),
-	107: new Audio("drumkit/sounds/lowtom-8.wav"),
-	pos9: new Audio("drumkit/sounds/ridebell-4a.wav"),
-	pos10: new Audio("drumkit/sounds/hihatO-5a.wav")
+	114: new Audio("drumkit/ridecrash-1.wav"),
+	116: new Audio("drumkit/hitom-left-2.wav"),
+	121: new Audio("drumkit/hitom-right-3.wav"),
+	117: new Audio("drumkit/ride-4.wav"),
+	106: new Audio("drumkit/hihat-5.wav"),
+	102: new Audio("drumkit/snare-6.wav"),
+	32: new Audio("drumkit/bass-kick-7.wav"),
+	107: new Audio("drumkit/lowtom-8.wav"),
+	pos9: new Audio("drumkit/ridebell-4a.wav"),
+	pos10: new Audio("drumkit/hihatO-5a.wav")
 };
 
 sounds = {
-	pos1: new Audio("drumkit/sounds/ridecrash-1.wav"),
-	pos2: new Audio("drumkit/sounds/hitom-left-2.wav"),
-	pos3: new Audio("drumkit/sounds/hitom-right-3.wav"),
-	pos4: new Audio("drumkit/sounds/ride-4.wav"),
-	pos5: new Audio("drumkit/sounds/hihat-5.wav"),
-	pos6: new Audio("drumkit/sounds/snare-6.wav"),
-	pos7: new Audio("drumkit/sounds/bass-kick-7.wav"),
-	pos8: new Audio("drumkit/sounds/lowtom-8.wav"),
-	pos9: new Audio("drumkit/sounds/ridebell-4a.wav"),
-	pos10: new Audio("drumkit/sounds/hihatO-5a.wav")
+	pos1: new Audio("drumkit/ridecrash-1.wav"),
+	pos2: new Audio("drumkit/hitom-left-2.wav"),
+	pos3: new Audio("drumkit/hitom-right-3.wav"),
+	pos4: new Audio("drumkit/ride-4.wav"),
+	pos5: new Audio("drumkit/hihat-5.wav"),
+	pos6: new Audio("drumkit/snare-6.wav"),
+	pos7: new Audio("drumkit/bass-kick-7.wav"),
+	pos8: new Audio("drumkit/lowtom-8.wav"),
+	pos9: new Audio("drumkit/ridebell-4a.wav"),
+	pos10: new Audio("drumkit/hihatO-5a.wav")
 };

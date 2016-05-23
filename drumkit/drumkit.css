@@ -16,10 +16,10 @@ body {
 	height: 100px;
 	border-radius: 50px;
 	font-size: 20px;
-	color: transparent;
+	color: black;
 	line-height: 100px;
 	text-align: center;
-	background: transparent;
+	background: white;
 }
 #pos1 {
 	width: 210px;

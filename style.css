@@ -17,11 +17,14 @@ body {
 }
 #row3 {
 	height: 60px;
+	margin-top: 15px;
 }
 .col-md-3 {
 	text-align: center;
 	position: relative;
+	display: block;
 }
+
 .col-md-1 {
 	background-color: green;
 }
@@ -40,6 +43,9 @@ body {
 .col-md-9 {
 	background-color: rgba(0,0,0,0.5);
 	height: 94px;
+	line-height: 30px;
+	color: white;
+	font-size: 15px;
 }
 .buzzer {
 	position: absolute;
@@ -56,6 +62,36 @@ body {
 	color: black;
 	background-color: white;
 }
+#buzzerX {
+	position: absolute;
+	left: 110px;
+	bottom: -100px;
+}
+#buzzerY {
+	position: absolute;
+	left: 110px;
+	bottom: -100px;	
+}
+.arrow-left {
+  position: absolute;
+  bottom: -90px;
+  right: 65px;
+  width: 0; 
+  height: 0; 
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;  
+  border-right: 30px solid white; 
+}
+.arrow-right {
+  position: absolute;
+  bottom: -90px;
+  left: 65px;
+  width: 0; 
+  height: 0; 
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent; 
+  border-left: 30px solid white;
+}
 .alerts {
 	margin-top: 10px;
 	border: 2px solid green;
@@ -66,13 +102,20 @@ body {
 	text-align: center;
 	color: white;
 }
+#formSubmit {
+	width: 200px;
+	position: absolute;
+	left: -10px;
+	bottom: -55px;
+}
 
 .btn {
 	width: 200px;
 	position: absolute;
-	left: 210px;
+	left: 310px;
 	bottom: 30px;
 }
+
 label {
 	display: block;
 	color: white;
@@ -85,15 +128,6 @@ label {
 #players {
 	border: 10px solid #c0392b;
 	border-radius: 15px;
-}
-.triangle {
-    width: 0;
-    height: 0;
-    margin-top: 20px;
-    margin-left: 100px;
-    border-bottom: 65px solid #f39c12;
-    border-left: 35px solid transparent;
-    border-right: 35px solid transparent;
 }
 #form {
 	position: absolute;
@@ -116,7 +150,8 @@ label {
 #next {
 	position: absolute;
 	right: 80px;
-	bottom: 30px;
+	bottom: 94px;
+	color: white;
 	background-color: blue;
 	border-radius: 5px;
 	border-bottom: 3px groove #bdc3c7;
@@ -135,6 +170,10 @@ form {
 	border-radius: 7px;
 	border: 1.5px solid gray;
 }
+#firstInput {
+	margin-top: 10px;
+}
+
 h1{
 	color: white;
 }
@@ -165,4 +204,16 @@ h2 {
 	margin-left: 70px;
 	text-align: center;
 	color: white;
+}
+#coolfact {
+	color: white;
+	padding: 20px;
+	text-align: center;
+}
+#coolfacttitle {
+	background-color: rgba(192, 57, 43,0.7);
+	color: white;
+	font-size: 20px;
+	height: 94px;
+	text-align: center;
 }
