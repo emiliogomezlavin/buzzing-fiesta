@@ -1,5 +1,6 @@
 body {
-	background-image: url("images/background.jpg");
+	/*background-image: url("media/background.jpg");*/
+	background-image: url("../media/images/background.jpg");
 	background-size: cover;
 	font-family: 'Lato', sans-serif;
 }
@@ -38,7 +39,8 @@ body {
 	margin-left: -15px;
 	margin-right: -30px;
 	background-color: rgba(0,0,0,0.6);
-	background-image: url("images/board-background.png");
+	/*background-image: url("media/board-background.png");*/
+	background-image: url("../media/images/board-background.png");
 }
 .col-md-9 {
 	background-color: rgba(0,0,0,0.5);
