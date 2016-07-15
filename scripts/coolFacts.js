@@ -1,5 +1,8 @@
 console.log("Linked");
 
+// De aqui puedo sacar el resto de los Cool Facts
+//   http://www.kickassfacts.com/30-interesting-facts-about-music-bands-part-1/
+
 coolFacts = [
 	"George Lucas allowed the band members of N Sync to make a cameo appearance in Star Wars Episode II: Attack of the Clones in order to appease his daughters. The footage was then cut out of the final version of the film",
 	"The band D12 planned to find the 12 best rappers of Detroit, but found only 6, so they created alter-egos in order to have 12. That was when Eminem came up with Slim Shady",

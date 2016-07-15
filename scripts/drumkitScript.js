@@ -6,22 +6,22 @@ window.onload = function () {
 
 function setEventListeners() {
 	
-	var i=0;
-	sounds.forEach(function(sound) {
-		console.log(sound);
-		var position = document.getElementById("pos"+i);
-		position.addEventListener("click", playSound);
-		i++;
-	});
+	// var i=0;
+	// sounds.forEach(function(sound) {
+	// 	console.log(sound);
+	// 	var position = document.getElementById("pos"+i);
+	// 	position.addEventListener("click", playSound);
+	// 	i++;
+	// });
 
-	keys.forEach(function(key) {
-		document.addEventListener("keypress", playKey);
-	});
-
-	// for (i=1; i<9; i++) {
-	// 	document.getElementById("pos"+i).addEventListener("click", playSound);
+	// keys.forEach(function(key) {
 	// 	document.addEventListener("keypress", playKey);
-	// }
+	// });
+
+	for (i=1; i<9; i++) {
+		document.getElementById("pos"+i).addEventListener("click", playSound);
+		document.addEventListener("keypress", playKey);
+	}
 }
 
 function playSound (event) {

@@ -1,5 +1,6 @@
 body {
 	background-color: black;
+	display: inline;
 }
 
 .container {
@@ -69,4 +70,14 @@ body {
 	height: 180px;
 	bottom: 50px;
 	left: 570px;
+}
+li {
+	color: white;
+}
+h1 {
+	color: gray;
+}
+#keys {
+	top: 10px;
+	width: 350px;
 }
