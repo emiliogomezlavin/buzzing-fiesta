@@ -6,7 +6,7 @@ var alerts;
 // On load, program sets the form for players to input their names and the name of the artist to play to
 window.onload = function () {
 	alerts = document.getElementById("alerts");
-	getPlayersDetails();
+	instructions();
 };
 
 
@@ -34,8 +34,25 @@ var player1;
 var player2;
 var artistName;
 
-// Form to get
+function instructions () {
+	alerts.innerHTML = "Welcome to Fiestardy!!! Here are the instructions of the game";
+	var instructions = document.createElement("p");
+	instructions.innerHTML = "<span style='text-align: center'>Hola amigos! Welcome to Fiestardy!!!</span> <br><br> Fiestardy is a fun game to prove your knowledge about music while battling against another friend. The point of the game is to try to guess the name of the song from a sample audio before the other player does. The keyboard will serve as the buzzer. Player 1 uses the keyboard letter 'S' as the buzzer and Player 2 uses the keyboard letter 'L' as the buzzer. <br><br> The app lets you personalize which artist's music you want to battle to by getting the top songs sample audio of the artist. If you're bored and don't have anyone to play with you can also use our drum kit to practice your beats. <br><br>Ready? Click on the button and personalize the player names and artist to get started. ENJOY!!!"
+	instructions.setAttribute("class", "instructions");
+	document.getElementById("board").appendChild(instructions);
+	var ready = document.createElement("button");
+	ready.setAttribute("class", "btn btn-danger");
+	ready.setAttribute("id", "ready");
+	ready.innerHTML = "Ready to Play!";
+	document.getElementById("board").appendChild(ready);
+	document.getElementById("ready").addEventListener("click", getPlayersDetails);
+}
+
+// Form to get the details of both player and the selected artist
 function getPlayersDetails () {
+	alerts.innerHTML = "Please input players names and artist name to play to"
+	var board = document.getElementById("board");
+	board.innerHTML = '<form class=".col-md-6" id="startForm"><label class ="formLabel" for="player1Input" id="firstInput">Player 1</label><input class="formInput" type="text" id="player1Input" placeholder="First name" required><label class ="formLabel" for="player2Input">Player 2</label><input class="formInput" type="text" id="player2Input" placeholder="First name" required><label class ="formLabel" for="bandInput">Artist Name</label><input class="formInput" type="text" id="artistInput" placeholder="Artist or Band that you want to guess songs from" required><input type="submit" id="formSubmit" class="btn btn-primary" value="SUBMIT"></form><div id="form"><audio id="song" autoplay></audio><audio src="media/songs/back-in-black.mp3" id="acdc" autoplay></audio></div>'
 	$("#startForm").on("submit", function(event){
     event.preventDefault(); 
     player1 = $("input#player1Input").val();
@@ -54,29 +71,21 @@ function getPlayersDetails () {
 
 	// Adds start button and message. Initializes game.
 	createStartMessage();
-	// createStartButton();
+
 	initialize();
 	});
 }
-
-// function createStartButton () {
-// 	var button = document.createElement("button");
-// 	button.setAttribute("class", "btn");
-// 	button.setAttribute("class", "btn-danger");
-// 	button.setAttribute("id", "btn");
-// 	button.innerHTML = "PLAY";
-// 	document.getElementById("board").appendChild(button);
-// 	button.setAttribute("style", "width: 200px");
-// 	button.setAttribute("style", "position: absolute");
-// 	button.setAttribute("style", "left: 210px");
-// 	button.setAttribute("style", "bottom: 30px");
-// }
 
 function createStartMessage () {
 	var ready = document.createElement("h2");
 	ready.innerHTML = "GET READY!!! </br> </br>CLICK ON THE START BUTTON!!";
 	ready.setAttribute("id", "ready");
+	var play = document.createElement("button");
+	play.setAttribute("class", "btn btn-danger");
+	play.setAttribute("id", "btn");
+	play.innerHTML = "PLAY";
 	document.getElementById("board").appendChild(ready);
+	document.getElementById("board").appendChild(play);
 }
 
 function initialize (){
@@ -90,7 +99,6 @@ function checkWinner (event) {
 	if (event.keyCode == "115") {
 		document.getElementById("buzzerX").setAttribute("class", "animated wobble");
 		setTimeOut("X");
-		addPointer("X", "arrow-right");
 		alerts.innerHTML = player1 + " buzzed first!";
 		document.removeEventListener("keypress", checkWinner);
 		currentPlayer = "X";
@@ -98,7 +106,6 @@ function checkWinner (event) {
 	else if (event.keyCode == "108") {
 		document.getElementById("buzzerY").setAttribute("class", "animated wobble");
 		setTimeOut("Y");
-		addPointer("Y", "arrow-left");
 		alerts.innerHTML = player2 + " buzzed first!";
 		document.removeEventListener("keypress", checkWinner);
 		currentPlayer = "Y";
@@ -115,12 +122,6 @@ function setTimeOut (Z) {
 	}, 20000);
 }
 
-function addPointer (Z, arrowSide) {
-	var arrow = document.createElement("div");
-	arrow.setAttribute("class", arrowSide);
-	arrow.setAttribute("class", "arrow");
-	document.getElementById(Z +"side").appendChild(arrow);
-}
 
 var randoms = [];
 var randomInd;
@@ -202,8 +203,8 @@ function verifyAnswer (event) {
 	if (currentPlayer !== undefined) {
 		if (checkAnswer()) {
 			asignWinner();
-			alerts.innerHTML = "Well done! That was the correct answer!";
-			window.setTimeout(function(){console.log("Pause");}, 20000);
+			// alerts.innerHTML = "Well done! That was the correct answer!";
+			window.setTimeout(function(){alerts.innerHTML = "Well done! That was the correct answer!";}, 20000);
 			nextQuestion();
 		}
 		else if (count === 0) {
@@ -225,16 +226,16 @@ function verifyAnswer (event) {
 function switchPlayer () {
 	if (currentPlayer === "X") {
 		alerts.innerHTML = "Wrong answer. " +player2 +" gets a chance to answer";
-		document.getElementById("buzzerX").setAttribute("style", "background-color: black");
-		document.getElementById("buzzerY").setAttribute("style", "background-color: #f39c12");
+		document.getElementById("buzzerY").setAttribute("class", "animated wobble");
+		setTimeOut("Y");
 		currentPlayer = "Y";
 		document.getElementById("submitButton").removeEventListener("click", verifyAnswer);
 		document.getElementById("submitButton").addEventListener("click", verifyAnswer);			
 	}
 	else {
 		alerts.innerHTML = "Wrong answer. " +player1 +" gets a chance to answer";
-		document.getElementById("buzzerY").setAttribute("style", "background-color: black");
-		document.getElementById("buzzerX").setAttribute("style", "background-color: #f39c12");
+		document.getElementById("buzzerX").setAttribute("class", "animated wobble");
+		setTimeOut("X");
 		currentPlayer = "X";
 		document.getElementById("submitButton").removeEventListener("click", verifyAnswer);
 		document.getElementById("submitButton").addEventListener("click", verifyAnswer);
@@ -283,8 +284,10 @@ function checkRadioButtons () {
 
 function nextQuestion () {
 	document.getElementById("submitButton").removeEventListener("click", verifyAnswer);
-	alerts.innerHTML = "Try a new song!";
+	alerts.innerHTML = "To play with a new song click on Next Song!";
 	// addRadioButton("submit", "submit", "", "next");
+	// var submit = document.getElementById("next");
+	// nextSong.parentNode.removeChild(nextSong);
 	addNextSongAttributes("submit", "submit", "NEXT SONG", "next");
 	addCoolFact();
 }

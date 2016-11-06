@@ -5,12 +5,13 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Music Rumble</title>
+  <title>Fiestardy</title>
   
   <!-- Adds Bootstrap library and CSS file -->
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="styles/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Modak|Pacifico" rel="stylesheet">
   
   <!-- Adds animate.css library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
@@ -20,27 +21,21 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="scripts/coolFacts.js" type="text/javascript"></script>
   <script src="scripts/script.js" type="text/javascript"></script>
-  <!-- <script src="dataDummie.js" type="text/javascript"></script> -->
+  
 </head>
 
 <body>
 
-  <header> 
-    <div>Headers</div>
-  </header>
-  <div class="container-fluid">
-  <div class="row">
-    <a href="drumkit.html" style="background-color: red">Play Solo</a>
+  <div class="row">    
+    <div class="col-md-4 game-title text-center">FIESTARDY</div>
+    <div class="col-md-4 col-md-offset-4">
+      <a href="drumkit.html" class="drum-kit button">No Friends? Bored? PLAY SOLO!!!</a>
+    </div>
   </div>
+  <div class="container-fluid">
     <div class="row" id="row1">
       <div class="col-md-3"><div id="scoresX" class="buzzer">0</div></div>
-      <div class="col-md-6 alerts" id="alerts">Welcome! Please input your details!</div>
-     <!--  <div class="col-md-1"></div>
-      <div class="col-md-1">Category 1</div>
-      <div class="col-md-1">Category 2</div>
-      <div class="col-md-1">Category 3</div>
-      <div class="col-md-1">Category 4</div>
-      <div class="col-md-1"></div> -->
+      <div class="col-md-6 alerts" id="alerts"></div>
       <div class="col-md-3"><div id="scoresY" class="buzzer">0</div></div>
     </div>
     <div class ="row" id="row2">
@@ -50,24 +45,10 @@
         </h1>
         <img id="players" src="media/images/avatar-1.jpeg" height="200px" width="200px">
         <img id="buzzerX" src="https://pbs.twimg.com/profile_images/722412969/_big.png" height="80px" width="80px">
-        <!-- <div class="triangle" id="buzzerX"></div> -->
       </div>  
       <div class="col-md-6" id="boardCol">
         <div id="board">
-          <form class=".col-md-6" id="startForm">
-            <label class ="formLabel" for="player1Input" id="firstInput">Player 1</label>
-            <input class="formInput" type="text" id="player1Input" placeholder="First name" required>
-            <label class ="formLabel" for="player2Input">Player 2</label>
-            <input class="formInput" type="text" id="player2Input" placeholder="First name" required>
-            <label class ="formLabel" for="bandInput">Artist Name</label>
-            <input class="formInput" type="text" id="artistInput" placeholder="Choose the name of the artist" required>
-            <input type="submit" id="formSubmit" class="btn btn-primary" value="SUBMIT">
-          </form>
-          <div id="form">
-            <audio id="song" autoplay></audio>
-            <audio src="media/songs/back-in-black.mp3" id="acdc" autoplay></audio>
-          </div>
-          <button class="btn btn-danger" id="btn">PLAY</button>
+
         </div>
       </div>
       <div class="col-md-3" id="Yside">
@@ -79,10 +60,11 @@
         <!-- <div class="triangle" id="buzzerY"></div> -->
       </div>
     </div>
-    <div class="row" id="row3">
-      <div class="col-md-3" id="coolfacttitle">DID</br>YOU</br>KNOW?</div>
-      <div class="col-md-9" id="coolfact"></div>
-    </div>
+    <br>
+  </div>
+  <div class="row" id="row3">
+    <div class="col-md-3" id="coolfacttitle">DID</br>YOU</br>KNOW?</div>
+    <div class="col-md-9" id="coolfact"></div>
   </div>
   <!-- <div id="boardFrame"></div> -->
 </body>
